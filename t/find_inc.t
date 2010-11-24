@@ -3,10 +3,10 @@ use warnings;
 use FindBin;
 use File::Spec;
 use Test::More;
-use Module::Libs;
+use Project::Libs;
 
 subtest 'find_inc' => sub {
-    my @submodules = Module::Libs::find_inc($FindBin::Bin, [qw(extlib)], ());
+    my @submodules = Project::Libs::find_inc($FindBin::Bin, [qw(extlib)], ());
     is_deeply \@submodules, [
         File::Spec->catfile($FindBin::Bin, 'extlib'),
         File::Spec->catfile($FindBin::Bin, 'modules/Plack/lib'),
@@ -18,7 +18,7 @@ subtest 'find_inc' => sub {
 my $gitmodules = "$FindBin::Bin/.gitmodules";
 
 subtest 'find_git_submodules' => sub {
-    my @submodules = Module::Libs::find_git_submodules(
+    my @submodules = Project::Libs::find_git_submodules(
         $FindBin::Bin,
         File::Spec->catfile($FindBin::Bin, '.gitmodules'),
     );

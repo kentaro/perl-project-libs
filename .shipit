@@ -1,0 +1,3 @@
+steps = FindVersion, ChangeVersion, CheckChangeLog, DistTest, Commit,  MakeDist, UploadCPAN
+git.tagpattern = v%v
+CheckChangeLog.files = Changes

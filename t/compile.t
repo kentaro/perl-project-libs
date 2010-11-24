@@ -2,6 +2,6 @@ use strict;
 use warnings;
 use Test::More;
 
-use_ok 'Module::Libs';
+use_ok 'Project::Libs';
 
 done_testing;

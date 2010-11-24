@@ -7,7 +7,7 @@ use Cwd;
 my $current_dir;
 BEGIN { $current_dir = getcwd }
 
-use Module::Libs lib_dirs => [qw(extlib)];
+use Project::Libs lib_dirs => [qw(extlib)];
 
 subtest 'find_inc' => sub {
     for my $path (map {
