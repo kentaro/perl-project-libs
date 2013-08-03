@@ -38,7 +38,8 @@ sub find_inc {
     return @inc if $current_dir eq '/';
     chdir $current_dir;
 
-    my @found = grep { -e File::Spec->catfile($current_dir, $_)} @$lib_dirs;
+    my $glob_expanded_lib_dirs = [ map { glob($_) } @$lib_dirs ];
+    my @found = grep { -e File::Spec->catfile($current_dir, $_)} @$glob_expanded_lib_dirs;
     push @inc, map { File::Spec->catfile($current_dir, $_)} @found;
 
     my @root_files = grep { -e $_ } @PROJECT_ROOT_FILES;
