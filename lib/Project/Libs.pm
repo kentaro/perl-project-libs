@@ -85,7 +85,7 @@ automatically
     use Project::Libs;
 
     # add more other dirs into @INC
-    use Project::Libs lib_dirs => [qw(extlib vendor)];
+    use Project::Libs lib_dirs => [qw(extlib vendor modules/*/lib)];
 
     # add more other marks locate on a project root
     use Project::Libs project_root_files => [qw(README Changes)];
