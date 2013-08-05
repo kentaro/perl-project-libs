@@ -38,7 +38,8 @@ sub find_inc {
     return @inc if $current_dir eq '/';
     chdir $current_dir;
 
-    my @found = grep { -e File::Spec->catfile($current_dir, $_)} @$lib_dirs;
+    my $glob_expanded_lib_dirs = [ map { glob($_) } @$lib_dirs ];
+    my @found = grep { -e File::Spec->catfile($current_dir, $_)} @$glob_expanded_lib_dirs;
     push @inc, map { File::Spec->catfile($current_dir, $_)} @found;
 
     my @root_files = grep { -e $_ } @PROJECT_ROOT_FILES;
@@ -84,7 +85,7 @@ automatically
     use Project::Libs;
 
     # add more other dirs into @INC
-    use Project::Libs lib_dirs => [qw(extlib vendor)];
+    use Project::Libs lib_dirs => [qw(extlib vendor modules/*/lib)];
 
     # add more other marks locate on a project root
     use Project::Libs project_root_files => [qw(README Changes)];
